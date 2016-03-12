@@ -32,7 +32,7 @@
 
 
 bl_info = {
-    "name": "Auto Save Render",
+    "name": "Auto Save Render with Datestamp",
     "author": "tstscr",
     "version": (1, 0),
     "blender": (2, 63, 0),
