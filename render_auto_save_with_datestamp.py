@@ -69,7 +69,7 @@ def auto_save_render(scene):
     datestamp = time.strftime("%Y-%m-%d") + " " + time.strftime("%H.%M.%S")
 
     print (datestamp)
-    
+
     if not exists(filepath):
         mkdir(filepath)
         
@@ -92,7 +92,7 @@ def auto_save_render(scene):
                 if int(suffix[-1]) > highest:
                     highest = int(suffix[-1])
     
-    save_name = join(filepath, blendname) + '_' + str(highest+1).zfill(3) + extension
+    save_name = join(filepath, blendname) + '-' + datestamp + extension
 
     image = bpy.data.images['Render Result']
     if not image:
