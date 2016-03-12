@@ -50,7 +50,7 @@ from os.path import dirname, exists, join
 from bpy.path import basename
 from os import mkdir, listdir
 from re import findall
-
+import time
 
 @persistent
 def auto_save_render(scene):
