@@ -52,6 +52,11 @@ from os import mkdir, listdir
 from re import findall
 import time
 
+def set_base_path(self):
+    print("Base Path Getting Set")
+    datestamp = time.strftime("%Y-%m-%d") + " " + time.strftime("%H.%M.%S")
+    bpy.context.scene.node_tree.nodes["File Output"].base_path = "//exports/" + datestamp
+
 @persistent
 def auto_save_render(scene):
     if not scene.save_after_render or not bpy.data.filepath:
@@ -133,6 +138,7 @@ def register():
                     name='subfolder',
                     default=False,
                     description='Save into individual subfolders per blend name')
+    bpy.app.handlers.render_pre.append(set_base_path)
     bpy.app.handlers.render_post.append(auto_save_render)
     bpy.types.RENDER_PT_render.append(auto_save_UI)
     
