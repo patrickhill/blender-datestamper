@@ -52,10 +52,27 @@ from os import mkdir, listdir
 from re import findall
 import time
 
+
+
 def set_base_path(self):
     print("Base Path Getting Set")
     datestamp = time.strftime("%Y-%m-%d") + " " + time.strftime("%H.%M.%S")
-    bpy.context.scene.node_tree.nodes["File Output"].base_path = "//exports/" + datestamp
+    
+    # bpy.context.scene.node_tree.nodes["File Output"].base_path = "//exports/" + datestamp
+
+    # sets File Output Node Input Subpath to unique name with date stamp
+    scene = bpy.context.scene
+    for node in scene.node_tree.nodes:
+        if node.type == "OUTPUT_FILE":
+            # print(node.type)
+            # print(node.file_slots)
+            x = 1
+            for slot in node.file_slots:
+                # print(slot.path)
+                number_with_leading_zero = format(x, '02d')
+                slot.path = datestamp + "-layer-" + str(number_with_leading_zero) + "-"
+                x += 1
+
 
 @persistent
 def auto_save_render(scene):
@@ -97,7 +114,8 @@ def auto_save_render(scene):
                 if int(suffix[-1]) > highest:
                     highest = int(suffix[-1])
     
-    save_name = join(filepath, blendname) + '-' + datestamp + extension
+    #save_name = join(filepath, blendname) + '-' + datestamp + extension
+    save_name = filepath + "/" + datestamp + "-composite" + extension
 
     image = bpy.data.images['Render Result']
     if not image:
