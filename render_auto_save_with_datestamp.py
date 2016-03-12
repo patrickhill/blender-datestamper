@@ -66,6 +66,9 @@ def auto_save_render(scene):
     
     blendname = basename(bpy.data.filepath).rpartition('.')[0]
     filepath = dirname(bpy.data.filepath) + '/exports'
+    datestamp = time.strftime("%Y-%m-%d") + " " + time.strftime("%H.%M.%S")
+
+    print (datestamp)
     
     if not exists(filepath):
         mkdir(filepath)
