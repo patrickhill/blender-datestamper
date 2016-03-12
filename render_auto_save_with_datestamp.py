@@ -65,7 +65,7 @@ def auto_save_render(scene):
     if format == 'PNG': extension = '.png'
     
     blendname = basename(bpy.data.filepath).rpartition('.')[0]
-    filepath = dirname(bpy.data.filepath) + '/auto_saves'
+    filepath = dirname(bpy.data.filepath) + '/exports'
     
     if not exists(filepath):
         mkdir(filepath)
