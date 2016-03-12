@@ -24,6 +24,13 @@
 #(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 #SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #################################################################
+
+# Plugin extended and modified by Patrick Hill
+# Date: 2016-03-12 14.46.01
+# website: HelloHill.com
+# email: patrickrhill@gmail.com
+
+
 bl_info = {
     "name": "Auto Save Render",
     "author": "tstscr",
