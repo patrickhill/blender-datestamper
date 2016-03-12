@@ -52,11 +52,10 @@ from os import mkdir, listdir
 from re import findall
 import time
 
-
+datestamp = time.strftime("%Y-%m-%d") + " " + time.strftime("%H.%M.%S")
 
 def set_base_path(self):
     print("Base Path Getting Set")
-    datestamp = time.strftime("%Y-%m-%d") + " " + time.strftime("%H.%M.%S")
     
     # bpy.context.scene.node_tree.nodes["File Output"].base_path = "//exports/" + datestamp
 
@@ -88,7 +87,6 @@ def auto_save_render(scene):
     
     blendname = basename(bpy.data.filepath).rpartition('.')[0]
     filepath = dirname(bpy.data.filepath) + '/exports'
-    datestamp = time.strftime("%Y-%m-%d") + " " + time.strftime("%H.%M.%S")
 
     print (datestamp)
 
