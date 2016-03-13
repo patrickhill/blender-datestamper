@@ -54,6 +54,7 @@ import time
 
 datestamp = time.strftime("%Y-%m-%d") + " " + time.strftime("%H.%M.%S")
 
+@persistent
 def set_base_path(self):
     print("Base Path Getting Set")
     
