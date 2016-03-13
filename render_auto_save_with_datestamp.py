@@ -53,8 +53,11 @@ from re import findall
 import time
 import re
 
+datestamp = time.strftime("%Y-%m-%d") + " " + time.strftime("%H.%M.%S")
+
 @persistent
 def set_base_path(self):
+    global datestamp
     datestamp = time.strftime("%Y-%m-%d") + " " + time.strftime("%H.%M.%S")
 
     print("Base Path Getting Set")
@@ -78,8 +81,7 @@ def set_base_path(self):
 
 @persistent
 def auto_save_render(scene):
-    datestamp = time.strftime("%Y-%m-%d") + " " + time.strftime("%H.%M.%S")
-    
+
     if not scene.save_after_render or not bpy.data.filepath:
         return
     rndr = scene.render
