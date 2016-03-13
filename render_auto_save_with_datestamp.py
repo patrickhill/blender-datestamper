@@ -70,6 +70,7 @@ def set_base_path(self):
         if node.type == "OUTPUT_FILE":
             # print(node.type)
             # print(node.file_slots)
+            node.base_path = "//exports"
             x = 1
             for slot in node.file_slots:
                 slot_path = slot.path
