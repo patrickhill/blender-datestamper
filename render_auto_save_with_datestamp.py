@@ -51,11 +51,12 @@ from bpy.path import basename
 from os import mkdir, listdir
 from re import findall
 import time
-
-datestamp = time.strftime("%Y-%m-%d") + " " + time.strftime("%H.%M.%S")
+import re
 
 @persistent
 def set_base_path(self):
+    datestamp = time.strftime("%Y-%m-%d") + " " + time.strftime("%H.%M.%S")
+
     print("Base Path Getting Set")
     
     # bpy.context.scene.node_tree.nodes["File Output"].base_path = "//exports/" + datestamp
@@ -68,14 +69,17 @@ def set_base_path(self):
             # print(node.file_slots)
             x = 1
             for slot in node.file_slots:
-                # print(slot.path)
+                slot_path = slot.path
+                slot_stripped_of_date = re.sub(r'\d{4}-\d{2}-\d{2} \d{2}.\d{2}.\d{2}-', '', slot_path)
                 number_with_leading_zero = format(x, '02d')
-                slot.path = datestamp + "-layer-" + str(number_with_leading_zero) + "-"
+                slot.path = datestamp + "-" + slot_stripped_of_date
                 x += 1
 
 
 @persistent
 def auto_save_render(scene):
+    datestamp = time.strftime("%Y-%m-%d") + " " + time.strftime("%H.%M.%S")
+    
     if not scene.save_after_render or not bpy.data.filepath:
         return
     rndr = scene.render
